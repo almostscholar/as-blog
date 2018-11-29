@@ -1,2 +1,2 @@
-# as-blog
+# asblog
 a simple angular blog
