@@ -1,0 +1,10 @@
+.main-body {
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  max-width: 1160px;
+}
+
+.center-text {
+  text-align: center;
+}
