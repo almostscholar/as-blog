@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,14 +25,15 @@ export class AppComponent implements OnInit {
       label: 'Contact',
       path: '/contact'
     }, {
+      label: 'Lifegroup',
+      path: '/lifegroup'
+    }, {
       label: 'Miscellaneous',
       path: '/miscellaneous'
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.router.navigateByUrl('blog');
-  }
+  ngOnInit() { }
 }

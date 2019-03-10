@@ -1,0 +1,63 @@
+<div class="container-fluid" style="margin-top: 2em" *ngIf="meeting">
+  <div class="row justify-content-center" style="margin-bottom: 5px">
+    <h4>
+      Next meeting is at <strong>{{ meeting.locationName }}</strong> on <strong>{{ meeting.meetingDate | date }}</strong>
+    </h4>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-3">
+        <mat-form-field style="width:100%">
+          <mat-select placeholder="Family" [(ngModel)]="familyName">
+            <mat-option *ngFor="let name of familyNames" [value]="name">
+              {{ name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field style="width:100%">
+        <input [(ngModel)]="itemName" matInput placeholder="Item to bring..." />
+      </mat-form-field>
+    </div>
+    <div class="col-1">
+        <button mat-stroked-button color="primary" (click)="addNewMenuItem()"><mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <mat-card>
+        <mat-card-content>
+          <div class="row" *ngIf="meeting.menuItems">
+            <table mat-table [dataSource]="meeting.menuItems" class="example-table">
+              <!-- Family Name Column -->
+              <div class="col-4">
+                  <ng-container matColumnDef="family">
+                      <th mat-header-cell *matHeaderCellDef>family</th>
+                      <td mat-cell *matCellDef="let menuItem">{{ menuItem.familyName }}</td>
+                    </ng-container>
+              </div>
+
+              <!-- Item Name Column -->
+              <ng-container matColumnDef="item">
+                <th mat-header-cell *matHeaderCellDef>item</th>
+                <td mat-cell *matCellDef="let menuItem">{{ menuItem.name }}</td>
+              </ng-container>
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Delete
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-stroked-button color="warn" (click)="deleteMenuItem(row.id)"><mat-icon>clear</mat-icon></button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
