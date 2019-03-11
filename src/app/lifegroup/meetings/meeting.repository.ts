@@ -6,32 +6,33 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MeetingRepository {
-  host = 'http://lifegroupservices.rwchildress.org';
-  baseUrl = '/lifegroup';
+  protocol = 'https://';
+  host = 'lifegroupservices.rwchildress.org';
+  api = '/lifegroup';
 
   constructor(private httpClient: HttpClient) { }
 
   findCurrentMeeting(): Observable<Meeting> {
-    const endpoint = '/meeting';
-    const url = `${this.host}${this.baseUrl}${endpoint}`;
+    const resource = '/meeting';
+    const url = `${this.protocol}${this.host}${this.api}${resource}`;
     return <Observable<Meeting>>this.httpClient.get(url);
   }
 
   findAllFamilyMembers(): Observable<Family[]> {
-    const endpoint = '/families';
-    const url = `${this.host}${this.baseUrl}${endpoint}`;
+    const resource = '/families';
+    const url = `${this.protocol}${this.host}${this.api}${resource}`;
     return <Observable<Family[]>> this.httpClient.get(url);
   }
 
   addMenuItem(menuItem: MenuItem): Observable<number> {
-    const endpoint = '/menuitem';
-    const url = `${this.host}${this.baseUrl}${endpoint}`;
+    const resource = '/menuitem';
+    const url = `${this.protocol}${this.host}${this.api}${resource}`;
     return <Observable<number>> this.httpClient.put(url, menuItem);
   }
 
   deleteMenuItem(id: number): Observable<any> {
-    const endpoint = '/menuitem';
-    const url = `${this.host}${this.baseUrl}${endpoint}/${id}`;
+    const resource = '/menuitem';
+    const url = `${this.protocol}${this.host}${this.api}${resource}/${id}`;
     return this.httpClient.delete(url);
   }
 }
