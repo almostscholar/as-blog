@@ -20,8 +20,8 @@ export class LifegroupService {
     return namesObservable;
   }
 
-  public addMenuItem(menuItem: MenuItem): Observable<number> {
-    return this.meetingRepository.addMenuItem(menuItem);
+  public saveMenuItem(menuItem: MenuItem): Observable<number> {
+    return this.meetingRepository.saveMenuItem(menuItem);
   }
 
   deleteMenuItem(id: number): Observable<any> {

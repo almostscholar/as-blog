@@ -24,7 +24,7 @@ export class MeetingRepository {
     return <Observable<Family[]>> this.httpClient.get(url);
   }
 
-  addMenuItem(menuItem: MenuItem): Observable<number> {
+  saveMenuItem(menuItem: MenuItem): Observable<number> {
     const resource = '/menuitem';
     const url = `${this.protocol}${this.host}${this.api}${resource}`;
     return <Observable<number>> this.httpClient.put(url, menuItem);

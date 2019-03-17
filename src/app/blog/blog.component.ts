@@ -8,6 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
+  title = 'Almost Scholarly';
+
+  tabs = [
+    {
+      label: 'About',
+      path: '/about'
+    }, {
+      label: 'Blog',
+      path: '/blog'
+    }, {
+      label: 'Resources',
+      path: '/resources'
+    }, {
+      label: 'Archive',
+      path: '/archive'
+    }, {
+      label: 'Contact',
+      path: '/contact'
+    }
+  ];
+
   blogContents: string[];
 
   constructor(private blogService: BlogService) { }

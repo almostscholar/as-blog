@@ -14,7 +14,7 @@ export class LifegroupComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable) matTable: MatTable<MenuItem>;
   meeting: Meeting;
   familyNames: string[];
-  displayedColumns = ['family', 'item', 'delete'];
+  displayedColumns = ['item', 'family', 'delete'];
   familyName: string;
   itemName: string;
   familyNamesSubscription: Subscription;
@@ -38,14 +38,14 @@ export class LifegroupComponent implements OnInit, OnDestroy {
   }
 
   addNewMenuItem() {
-    if (this.familyName && this.itemName) {
+    if (this.itemName) {
       const menuItem: MenuItem = {
         id: null,
         familyName: this.familyName,
         name: this.itemName
       };
 
-      this.lifegroupService.addMenuItem(menuItem).pipe(first()).subscribe((id) => {
+      this.lifegroupService.saveMenuItem(menuItem).pipe(first()).subscribe((id) => {
         menuItem.id = id;
         this.meeting.menuItems.push(menuItem);
         this.matTable.renderRows();
@@ -55,6 +55,14 @@ export class LifegroupComponent implements OnInit, OnDestroy {
       this.itemName = '';
     } else {
       console.log('ignored attempt to add invalid menu item');
+    }
+  }
+
+  saveMenuItem(menuItem: MenuItem) {
+    if (menuItem.id && menuItem.name && menuItem.familyName) {
+      this.lifegroupService.saveMenuItem(menuItem).pipe(first()).subscribe((id) => {
+        console.log('updated item with id', id);
+      });
     }
   }
 
