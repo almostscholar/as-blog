@@ -58,7 +58,7 @@ export class LifegroupComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveMenuItem(menuItem: MenuItem) {
+  saveMenuItem(menuItem: MenuItem): void {
     if (menuItem.id && menuItem.name && menuItem.familyName) {
       this.lifegroupService.saveMenuItem(menuItem).pipe(first()).subscribe((id) => {
         console.log('updated item with id', id);
@@ -66,7 +66,7 @@ export class LifegroupComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteMenuItem(id: number) {
+  deleteMenuItem(id: number): void {
     if (id) {
       this.lifegroupService.deleteMenuItem(id).pipe(first()).subscribe(() => {
         const filteredMenuItems: MenuItem[] = this.meeting.menuItems.filter(item => item.id !== id);
@@ -74,5 +74,11 @@ export class LifegroupComponent implements OnInit, OnDestroy {
         this.matTable.renderRows();
       });
     }
+  }
+
+  public complete(id: number): void {
+    this.lifegroupService.completeMeeting(id).pipe(first()).subscribe(() => {
+      console.log('completed meeting');
+    });
   }
 }
