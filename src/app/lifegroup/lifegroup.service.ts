@@ -27,4 +27,8 @@ export class LifegroupService {
   deleteMenuItem(id: number): Observable<any> {
     return this.meetingRepository.deleteMenuItem(id);
   }
+
+  completeMeeting(id: number): Observable<any> {
+    return this.meetingRepository.completeMeeting(id);
+  }
 }

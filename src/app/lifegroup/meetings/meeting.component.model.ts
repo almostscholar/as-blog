@@ -1,4 +1,5 @@
 export class Meeting {
+  id: number;
   locationName: string;
   meetingDate: Date;
   isComplete: boolean;

@@ -35,4 +35,13 @@ export class MeetingRepository {
     const url = `${this.protocol}${this.host}${this.api}${resource}/${id}`;
     return this.httpClient.delete(url);
   }
+
+  completeMeeting(id: number): Observable<any> {
+    const resource = '/meeting';
+    const action = '/complete';
+    const url = `${this.protocol}${this.host}${this.api}${resource}/${id}${action}`;
+
+    // empty body because not needed for this API
+    return this.httpClient.patch(url, {});
+  }
 }
